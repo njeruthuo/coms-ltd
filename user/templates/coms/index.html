@@ -1,0 +1,13 @@
+{% extends "base.html" %} 
+{% load static %} 
+<title>Package List</title>
+
+{% block content %} {% for package in packages %}
+<a href=" {% url 'package-detail' package.id %} ">
+    <div class="card flexible">
+        <img class="thumbnail" src="{{package.image}}" alt="" />
+        <h2>{{package.title}}</h2>
+        <p>Sh.{{package.price}}</p>
+    </div>
+</a>
+{% endfor %} {% endblock content %}

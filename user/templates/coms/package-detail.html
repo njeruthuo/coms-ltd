@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% load static %}
+
+<link rel="stylesheet" href=" {% static 'coms/css/package-detail.css' %} " />
+{% block title %} landing page {% endblock title %}
+
+
+{% block content %}
+<div style="height: 50vh; margin: 6rem 0" class="product-details">
+    <div style="width: 15%; margin: 0 auto" class="product-image">
+        <img
+            style="
+                height: auto;
+                width: 200px;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+            "
+            src="{{ package.image }}"
+            alt="{{ package.title }}"
+        />
+    </div>
+    <div class="product-info">
+        <h2>{{ package.title }}</h2>
+        <p class="price">Price: sh.{{ package.price }}</p>
+        <p class="bundle">Bundle Amount: {{ package.bundle }}GB</p>
+    </div>
+    <br />
+    <div style="
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    " class="buttons">
+        <button style="margin-right: 20px; background: green; color: white;" class="apply-button"><a href=" {% url 'package-application' package.id %}" style="color: white; padding: 10px;">Apply</a></button>
+        <button style="color: white; padding: 10px; background: brown;" class="back-button" onclick="goBack()"><a style="color: white;" href="{{ request.META.HTTP_REFERER }}">Go Back</a></button>
+    </div>
+</div>
+{% endblock content %}

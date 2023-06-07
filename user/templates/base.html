@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="{% static 'user/css/style.css' %}" />
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %} {% endblock title %}</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            a {
+                text-decoration: none;
+            }
+
+            .container {
+                width: 85%;
+                margin: 2px auto;
+                /* height: 100vh; */
+                margin-bottom: 1rem;
+            }
+
+            .footer {
+                border: 1px solid rgb(96, 96, 96);
+                /* height: 18vh; */
+                margin-top: 0;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                background-color: rgb(96, 96, 96);
+            }
+
+            header {
+                background-color: #333;
+                padding: 20px;
+                color: #fff;
+                text-align: center;
+                position: relative;
+            }
+
+            h1 {
+                margin: 0;
+                font-size: 24px;
+            }
+
+            p {
+                margin: 10px 0 0;
+                font-size: 16px;
+            }
+
+            /* CSS for the hamburger menu */
+            .menu-icon {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                color: #fff;
+                cursor: pointer;
+                font-size: 24px; /* Adjust the size of the hamburger menu */
+            }
+
+            #messages {
+                /* background: green; */
+                color: white;
+                padding: 10px;
+                width: 700px;
+                margin: 0 auto;
+            }
+
+            .menu {
+                display: none;
+                position: absolute;
+                top: 94px;
+                left: 0;
+                background-color: #fff;
+                padding: 10px;
+                border: 2px solid rgb(96, 96, 96);
+                width: 200px;
+                text-align: left;
+                z-index: 1;
+            }
+
+            .menu a {
+                display: block;
+                color: #333;
+                text-decoration: none;
+                padding: 5px;
+            }
+            footer {
+                background-color: #333;
+                padding: 20px;
+                color: #fff;
+                text-align: center;
+            }
+
+            .social-icons {
+                margin: 10px 0;
+            }
+
+            .social-icons a {
+                display: inline-block;
+                color: #fff;
+                text-decoration: none;
+                margin: 0 10px;
+                font-size: 24px;
+            }
+
+            .flexible {
+                border: 1px solid black;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                width: 80%;
+                margin: 2rem auto;
+                padding: 1rem;
+            }
+
+            .flexible img {
+                margin: 1rem;
+                width: 100px;
+            }
+        </style>
+        <script>
+            // JavaScript to toggle the menu and change the menu icon
+            function toggleMenu() {
+                var menu = document.getElementById("menu-dropdown");
+                var icon = document.getElementById("menu-icon");
+
+                if (menu.style.display === "block") {
+                    menu.style.display = "none";
+                    icon.innerHTML = "&#9776;"; // Change back to hamburger menu
+                } else {
+                    menu.style.display = "block";
+                    icon.innerHTML = "&times;"; // Change to X icon
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1>Communication_LTD</h1>
+            <p>We sell internet packages at a cheap price.</p>
+            <div class="menu-icon" id="menu-icon" onclick="toggleMenu()">
+                &#9776;
+            </div>
+            {% if request.user.is_authenticated %}
+            <div class="menu" id="menu-dropdown">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'profile' %}">Profile</a>
+                <a href="{% url 'subscription' %}">Subscriptions</a>
+                <a href=" {% url 'logout' %} ">Logout</a>
+            </div>
+            {% else %}
+            <div class="menu" id="menu-dropdown">
+                <a href="{% url 'register' %}">Signup</a>
+            </div>
+            {% endif %}
+        </header>
+        <div id="messages">
+            {% if messages %} {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %} {% endif %}
+        </div>
+
+        {% block content %}
+        <div class="container"></div>
+        {% endblock content %} {% block footer %}
+        <section
+            style="
+                background: black;
+                color: white;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-content: center;
+                padding: 2rem;
+            "
+        >
+            <p>All rights reserved.</p>
+            <p>Communication_LTD &copy; 2023!</p>
+        </section>
+        {% endblock footer %}
+
+        <script>
+            // Automatically remove messages after a certain duration (in milliseconds)
+            setTimeout(function () {
+                var messagesDiv = document.getElementById("messages");
+                messagesDiv.style.display = "none";
+            }, 2000); // Change the duration (in milliseconds) as needed
+        </script>
+    </body>
+</html>

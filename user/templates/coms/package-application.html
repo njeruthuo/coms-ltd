@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% load static %}
+
+
+<link rel="stylesheet" href=" {% static 'coms/css/package-detail.css' %} " />
+{% block title %} landing page {% endblock title %} {% block content %}
+<div style="height: 50vh; margin: 6rem 0" class="product-details">
+    <div class="product-info">
+        <h2 style="padding-top: 0;">{{ package.title }}</h2>
+        <form 
+        style="
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        "
+        class="container" action="" method="POST">
+            {% csrf_token %}
+            <p>Are you sure you want to subscribe to this package?</p>
+            <br>
+            <div>
+                <button style="padding: 1px 25px;" type="submit">Yes</button>
+                <button>No. Go back</button>
+            </div>
+        </form>
+
+    </div>
+    <br />
+</div>
+{% endblock content %}

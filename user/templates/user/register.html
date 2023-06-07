@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href=" {% static 'user/css/style.css' %}">
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="container">
+            <form method="POST" novalidate>
+                {% for message in messages %}
+                  <p>{{message}}</p>
+                {% endfor %}
+                {% csrf_token %}
+                <h2>Sign Up</h2>
+
+                {% for field in form %}
+                <div>
+                    {% if field.errors %}
+                    <ul class="errorlist">
+                        {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %} {{ field.label_tag }} {{ field }}
+                </div>
+                {% endfor %}
+                <input type="submit" value="Register" />
+                <p>
+                    Already have an account?
+                    <a href="{% url 'login' %}">Login</a>
+                </p>
+            </form>
+        </div>
+    </body>
+</html>

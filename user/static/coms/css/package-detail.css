@@ -1,0 +1,57 @@
+.product-details {
+    display: flex;
+    align-items: center;
+}
+
+.product-image {
+    margin-right: 20px;
+}
+
+.product-image img {
+    width: 200px;
+    height: auto;
+}
+
+.product-info {
+    font-size: 16px;
+}
+
+.product-info h2 {
+    margin-top: 0;
+}
+
+.price {
+    font-weight: bold;
+}
+
+.bundle {
+    margin-top: 10px;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.buttons button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.back-button {
+    background-color: #ccc;
+}
+
+.back-button:hover {
+    background-color: #aaa;
+}
+
+/* Optional: Apply styles to the apply button */
+.apply-button {
+    background-color: #f00;
+    color: #fff;
+}
+
+.apply-button:hover {
+    background-color: #c00;
+}

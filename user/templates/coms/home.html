@@ -1,0 +1,100 @@
+{% extends "base.html" %} {% load static %} {% block title %} Home {% endblock title %} 
+{% block content %}
+<h2 style="text-align: center">Welcome {{request.user}}</h2>
+<hr />
+<br />
+<div style="margin-top: 0; min-height: 300px; width: 80%; margin: 1rem auto">
+    <h3 style="text-align: center">My subscriptions</h3>
+
+    <hr style="margin: 0.5rem" />
+    <table style="border-collapse: collapse; width: 80%; margin: 0 auto">
+        <tr style="background-color: #f5f5f5; font-weight: bold">
+            <th style="padding: 0.5rem; text-align: left">Package name</th>
+            <th style="padding: 0.5rem; text-align: left">Bundle</th>
+            <th style="padding: 0.5rem; text-align: left">Price</th>
+            <th style="padding: 0.5rem"></th>
+        </tr>
+
+        {% for subscription in subscriptions %}
+        <tr style="background-color: {% cycle '#f9f9f9' '#ffffff' %};">
+            <td style="padding: 0.5rem">{{subscription.package.title}}</td>
+            <td style="padding: 0.5rem">{{subscription.package.bundle}}</td>
+            <td style="padding: 0.5rem">sh. {{subscription.package.price}}</td>
+            <td style="padding: 0.5rem">
+                <button>
+                    <a href="{% url 'remove-package' subscription.id %}"
+                        >Unsubscribe</a
+                    >
+                </button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div
+    style="
+        margin-top: 0;
+        min-height: 300px;
+        width: 80%;
+        margin: 0 auto;
+        margin-bottom: 5rem;
+    "
+>
+    <h3 style="text-align: center; margin-top: 0.5rem">Available plans</h3>
+    <hr style="margin: 0.5rem" />
+    <table style="border-collapse: collapse; width: 80%; margin: 0 auto">
+        <tr style="background-color: #f5f5f5; font-weight: bold">
+            <th style="padding: 0.5rem; text-align: left">Package name</th>
+            <th style="padding: 0.5rem; text-align: left">Bundle</th>
+            <th style="padding: 0.5rem; text-align: left">Price</th>
+            <th style="padding: 0.5rem"></th>
+        </tr>
+
+        {% for package in packages %}
+        <tr style="background-color: {% cycle '#f9f9f9' '#ffffff' %};">
+            <td style="padding: 0.5rem">{{ package.title }}</td>
+            <td style="padding: 0.5rem">{{ package.bundle }}</td>
+            <td style="padding: 0.5rem">{{ package.price }}</td>
+            <td style="padding: 0.5rem">
+                <button>
+                    <a href="{% url 'package-application' package.id %}"
+                        >Subscribe</a
+                    >
+                </button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div
+    style="
+        margin-top: 0;
+        min-height: 300px;
+        width: 80%;
+        margin: 0 auto;
+        margin-bottom: 5rem;
+    "
+>
+    <h3 style="text-align: center; margin-top: 0.5rem">Our markets</h3>
+    <hr style="margin: 0.5rem" />
+    <p>These are the sectors where we market our bundles.</p>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr)">
+        <div>
+            <img style="width: 100px" src="" alt="img" />
+            <p style="text-align: center">Healthcare</p>
+        </div>
+        <div>
+            <img style="width: 100px" src="" alt="img" />
+            <p style="text-align: center">Education</p>
+        </div>
+        <div>
+            <img style="width: 100px" src="" alt="img" />
+            <p style="text-align: center">Home and office use</p>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

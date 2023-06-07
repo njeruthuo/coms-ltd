@@ -1,0 +1,81 @@
+{% extends "base.html" %} {% load static %}
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href=" {% static 'style.css' %}" />
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %} Home {% endblock title %}</title>
+    </head>
+    <body>
+        {% block content %}
+        <h2 style="text-align: center">Welcome {{request.user}}</h2>
+        <hr />
+        <br />
+
+        <div
+        style="
+                margin-top: 0;
+                width: 80%;
+                margin: 1rem auto;
+            "
+        >
+        <h3 style="text-align: center">Your profile Information</h3>
+        <hr>
+
+        <p>{{profile.user}}</p>
+        </div>
+
+
+
+
+
+        <div
+            style="
+                margin-top: 0;
+                min-height: 500px;
+                width: 80%;
+                margin: 1rem auto;
+            "
+        >
+            <h3 style="text-align: center">My subscriptions</h3>
+
+            <hr style="margin: 0.5rem" />
+            <table
+                style="border-collapse: collapse; width: 80%; margin: 0 auto"
+            >
+                <tr style="background-color: #f5f5f5; font-weight: bold">
+                    <th style="padding: 0.5rem; text-align: left">
+                        Package name
+                    </th>
+                    <th style="padding: 0.5rem; text-align: left">Bundle</th>
+                    <th style="padding: 0.5rem; text-align: left">Price</th>
+                    <th style="padding: 0.5rem"></th>
+                </tr>
+
+                {% for subscription in subscriptions %}
+                <tr style="background-color: {% cycle '#f9f9f9' '#ffffff' %};">
+                    <td style="padding: 0.5rem">
+                        {{subscription.package.title}}
+                    </td>
+                    <td style="padding: 0.5rem">
+                        {{subscription.package.bundle}}
+                    </td>
+                    <td style="padding: 0.5rem">
+                        sh. {{subscription.package.price}}
+                    </td>
+                    <td style="padding: 0.5rem">
+                        <button>
+                            <a href="{% url 'remove-package' subscription.id %}"
+                                >Unsubscribe</a
+                            >
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        {% endblock content %}
+    </body>
+</html>
