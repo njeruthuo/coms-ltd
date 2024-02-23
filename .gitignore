@@ -1,8 +1,8 @@
-private-key.pem
-public-cert.pem
-Pipfile
-Pipfile.lock
-procfile
-.vscode
-db.sqlite3
-runtime.txt
+./private-key.pem
+./public-cert.pem
+./Pipfile
+./Pipfile.lock
+./procfile
+./.vscode
+./db.sqlite3
+./runtime.txt
