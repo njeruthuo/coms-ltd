@@ -12,8 +12,6 @@ ALLOWED_HOSTS = ['.vercel.app', 'localhost']
 
 INSTALLED_APPS = [
     'user',
-    'crm',
-    'sslserver',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -61,8 +59,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'GC62-caC3dEea2F14c3F1BcG1d2*be5G',
-        'HOST': 'roundhouse.proxy.rlwy.net', 'PORT': '43522'
+        'PASSWORD': '44ee*FefFDEA11FD3*EGgagF2fgA1bF5',
+        'HOST': 'viaduct.proxy.rlwy.net', 'PORT': '13923'
     }
 }
 
