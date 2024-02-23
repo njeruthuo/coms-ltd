@@ -1,12 +1,13 @@
 from pathlib import Path
+import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 SECRET_KEY = 'django-insecure-_2k5p6b-cxdxsr1+qr&+vx5b8@ad(#cz!6m!yp4w+u&m+&=fxh'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app', 'localhost']
 
 
 INSTALLED_APPS = [
@@ -57,23 +58,13 @@ WSGI_APPLICATION = 'coms_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'GC62-caC3dEea2F14c3F1BcG1d2*be5G',
+        'HOST': 'roundhouse.proxy.rlwy.net', 'PORT': '43522'
     }
 }
-
-# THIS ONE
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#          YOU CAN THEN CREATE A DATABASE WITH THE NAME `coms_ltd`
-#         'NAME': 'coms_ltd',
-#         'USERNAME':'root',
-#         'PASSWORD':'',
-#         'HOST':'127.0.0.1',
-#         'PORT':3306,
-#     }
-# }
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -102,18 +93,16 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'testemailservicedjango@gmail.com'  # Your Gmail email address
-# EMAIL_HOST_PASSWORD = 'superuser1!'  # Your Gmail password
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'testemailservicedjango@gmail.com'  # Your Gmail email address
+EMAIL_HOST_PASSWORD = 'superuser1!'  # Your Gmail password
